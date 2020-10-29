@@ -1,44 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="topnav">
-        <h1 class="topNavTitle">Weather Dashboard</h1>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  </head>
+  <body>
+      <!--
+             <div class="sideNav">
+      <div class="sideNavItems">
+        <a href="#" class="city">Durham</a>
+        <a href="#" class="city">City2</a>
+        <a href="#" class="city">City3</a>
+        <a href="#" class="city">City4</a>
+        <a href="#" class="city">City5</a>
+      </div>
     </div>
-    <div class="sideNav"> 
-    <div class="sideNavItems">
-        <a href="#">Durham</a>
-        <a href="#">City2</a>
-        <a href="#">City3</a>
-        <a href="#">City4</a>
-        <a href="#">City5</a>
 
-    </div>
+
+
+      -->
  
+    <div class="container">
+        <div class="topnav">
+            <h1 class="topNavTitle">Weather Dashboard</h1>
+          </div>
+          <div class="city"></div>
+          <div class="wind"></div>
+          <div class="humidity"></div>
+          <div class="temp"></div>
     </div>
 
+    <form>
+        <input
+            class=""
+            type=""
+            placeholder="Search for a location"
+            aria-label="search"
+        />
 
-</body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
 
-var apiKey = "a834dd510cabc62c09f14e9a034697fd"
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Durham&appid=" + apiKey
+    </form>
 
-$.ajax({
-      url: queryURL,
-      method: "GET"
-    })
 
-    .then(function(response){
-        console.log(response)
 
-    })
+  
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    /*
+    var city1 = "Durham"
+    var apiKey = "a834dd510cabc62c09f14e9a034697fd";
+    var queryURL1 =
+      "https://api.openweathermap.org/data/2.5/weather?q=" + city1 + "&appid=" +
+      apiKey;
 
-</script>
+    $.ajax({
+      url: queryURL1,
+      method: "GET",
+    }).then(function (response) {
+      var mainName = $("<div>").attr("id", city1)
+        console.log(mainName)
+
+     var cityData =  $(".city").html("<h1>" + response.name + " Weather Details</h1>");
+     var windData = $(".wind").text("Wind Speed: " + response.wind.speed);
+     var humidData= $(".humidity").text("Humidity: " + response.main.humidity);
+     
+     
+     mainName.appendTo(".temp")
+     mainName.append(cityData,windData,humidData)
+    });
+
+    var city2 = "Atlanta"
+    var apiKey = "a834dd510cabc62c09f14e9a034697fd";
+    var queryURL2 =
+      "https://api.openweathermap.org/data/2.5/weather?q=" + city2 + "&appid=" +
+      apiKey;
+
+    $.ajax({
+      url: queryURL2,
+      method: "GET",
+    }).then(function (response) {
+      var mainName = $("<div>").attr("id", city2)
+        console.log(mainName)
+
+     var cityData =  $(".city").html("<h1>" + response.name + " Weather Details</h1>");
+     var windData = $(".wind").text("Wind Speed: " + response.wind.speed);
+     var humidData= $(".humidity").text("Humidity: " + response.main.humidity);
+     
+     
+     mainName.appendTo(".temp")
+     mainName.append(cityData,windData,humidData)
+    });
+    */$
+  </script>
 </html>
