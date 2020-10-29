@@ -1,0 +1,30 @@
+
+*{
+    margin: auto;
+    padding: auto;
+}
+
+.topnav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    height: 50px;
+
+
+}
+
+.topNavTitle {
+    color: white;
+}
+
+.sideNav {
+    display: grid;
+    grid-template-columns: auto;
+    left: 0;
+    align-items: flex-start;
+}
+  
+  a {
+
+  }
