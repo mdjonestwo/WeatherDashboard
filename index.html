@@ -46,71 +46,11 @@
       <div class="wind"></div>
       <div class="humidity"></div>
       <div class="temp"></div>
-      <div class="tempF"></div>
+      <div class="stuff"></div>
     </div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
-    $(document).ready(function () {
-      $("#submit").click(function () {
-        city1 = $("#locationInput").val();
-
-        var apiKey = "a834dd510cabc62c09f14e9a034697fd";
-        var queryURL1 =
-          "https://api.openweathermap.org/data/2.5/weather?q=" +
-          city1 +
-          "&appid=" +
-          apiKey;
-
-        $.ajax({
-          url: queryURL1,
-          method: "GET",
-        }).then(function (response) {
-          var mainName = $("<div>").attr("id", city1);
-          console.log(mainName);
-
-          var cityData = $(".city").html(
-            "<h1>" + response.name + " Weather Details</h1>"
-          );
-          var windData = $(".wind").text("Wind Speed: " + response.wind.speed);
-          var humidData = $(".humidity").text(
-            "Humidity: " + response.main.humidity
-          );
-
-          mainName.appendTo(".temp");
-          mainName.append(cityData, windData, humidData);
-          
-
-          //var tempF = (response.main.temp - 273.15) * 1.8 + 32;
-
-         // $(".temp").text("Temperature (K) " + response.main.temp);
-          var tempData = $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
-        });
-      });
-    });
-
-    /*
-    var city2 = "Atlanta"
-    var apiKey = "a834dd510cabc62c09f14e9a034697fd";
-    var queryURL2 =
-      "https://api.openweathermap.org/data/2.5/weather?q=" + city2 + "&appid=" +
-      apiKey;
-
-    $.ajax({
-      url: queryURL2,
-      method: "GET",
-    }).then(function (response) {
-      var mainName = $("<div>").attr("id", city2)
-        console.log(mainName)
-
-     var cityData =  $(".city").html("<h1>" + response.name + " Weather Details</h1>");
-     var windData = $(".wind").text("Wind Speed: " + response.wind.speed);
-     var humidData= $(".humidity").text("Humidity: " + response.main.humidity);
-     
-     
-     mainName.appendTo(".temp")
-     mainName.append(cityData,windData,humidData)
-    });
-    */
+    
   </script>
 </html>
