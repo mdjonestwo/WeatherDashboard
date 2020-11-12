@@ -3,11 +3,6 @@
 $(document).ready(function () {
   // add here so all functions can grab
   var apiKey = "a834dd510cabc62c09f14e9a034697fd";
-  $("#submit").click(function () {
-    var city1 = $("#locationInput").val();
-    getCurrentWeather(city1);
-  });
-
   function getCurrentWeather(city) {
     $.ajax({
       url:
@@ -17,12 +12,13 @@ $(document).ready(function () {
         apiKey,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
+     // console.log(response);
       if (storage.indexOf(city) === -1) {
         storage.push(city);
         localStorage.setItem("storage", JSON.stringify(storage));
       }
 
+      
       var mainName = $("<div>").attr("id", city1);
       // console.log(mainName);
 
@@ -47,6 +43,13 @@ $(document).ready(function () {
       //add getForcast
     });
   }
+  
+  $("#submit").click(function () {
+    var city1 = $("#locationInput").val();
+    getCurrentWeather(city1);
+  });
+
+  
 
   function getUV(lat, long) {
     $.ajax({
