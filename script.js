@@ -1,8 +1,6 @@
-
-
 $(document).ready(function () {
-  // add here so all functions can grab
   var apiKey = "a834dd510cabc62c09f14e9a034697fd";
+
   function getCurrentWeather(city) {
     $.ajax({
       url:
@@ -12,7 +10,11 @@ $(document).ready(function () {
         apiKey,
       method: "GET",
     }).then(function (response) {
-     console.log(response);
+      $(".city").html("<h1>" + response.name + " Weather Details" + "</h1>");
+      $(".wind").text("Wind Speed: " + response.wind.speed);
+      $(".humidity").text("Humidity: " + response.main.humidity);
+      $(".temp").text("Temperature: " + response.main.temp);
+
       if (storage.indexOf(city) === -1) {
         storage.push(city);
         localStorage.setItem("storage", JSON.stringify(storage));
@@ -29,38 +31,40 @@ $(document).ready(function () {
             apiKey,
           method: "GET",
         }).then(function (response) {
-          console.log(response);
+          $(".uvIndex").text("UV Index: " + response.value);
         });
       }
-      
-      var mainName = $("<div>").attr("id", city);
-      // console.log(mainName);
-
-      var cityData = $(".city").html( "<h1>" + response.name + " Weather Details</h1>");
-      var windData = $(".wind").text("Wind Speed: " + response.wind.speed);
-      var humidData = $(".humidity").text("Humidity: " + response.main.humidity);
-
-      // Convert the temp to fahrenheit
-      var tempF = response.main.temp;
-
-      // add temp content to html
-      //var tempData = $(".temp").text("Temperature (K) " + response.main.temp);
-      var tempDataF = $(".temp").text("Temperature (F) " + tempF.toFixed(1));
-
-      mainName.appendTo(".stuff");
-      mainName.append(cityData, windData, humidData, tempDataF);
       getUV(response.coord.lat, response.coord.lon);
-      //add getForcast
+    
+    
+    
     });
+/*
+    function forecast(city) {
+      $.ajax({
+        url:
+          "http://api.openweathermap.org/data/2.5/forecast?q=" +
+          city +
+          "&appid=" +
+          apiKey,
+        method: "Get",
+      }).then(function (response) {
+        console.log(response);
+        response.dt;
+        response.main.temp;
+        response.main.humidity;
+      });
+     
+    }
   }
-  
+*/
+
   $("#submit").on("click", function (event) {
     event.preventDefault();
     var city1 = $("#locationInput").val();
     getCurrentWeather(city1);
+    forecast(city1);
   });
-
-  
 
   //pull data or create empty array
   var storage = JSON.parse(localStorage.getItem("storage")) || [];
