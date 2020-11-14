@@ -12,23 +12,33 @@ $(document).ready(function () {
         apiKey,
       method: "GET",
     }).then(function (response) {
-     // console.log(response);
+     console.log(response);
       if (storage.indexOf(city) === -1) {
         storage.push(city);
         localStorage.setItem("storage", JSON.stringify(storage));
       }
 
+      function getUV(lat, long) {
+        $.ajax({
+          url:
+            "http://api.openweathermap.org/data/2.5/uvi?lat=" +
+            lat +
+            "&lon=" +
+            long +
+            "&appid=" +
+            apiKey,
+          method: "GET",
+        }).then(function (response) {
+          console.log(response);
+        });
+      }
       
-      var mainName = $("<div>").attr("id", city1);
+      var mainName = $("<div>").attr("id", city);
       // console.log(mainName);
 
-      var cityData = $(".city").html(
-        "<h1>" + response.name + " Weather Details</h1>"
-      );
+      var cityData = $(".city").html( "<h1>" + response.name + " Weather Details</h1>");
       var windData = $(".wind").text("Wind Speed: " + response.wind.speed);
-      var humidData = $(".humidity").text(
-        "Humidity: " + response.main.humidity
-      );
+      var humidData = $(".humidity").text("Humidity: " + response.main.humidity);
 
       // Convert the temp to fahrenheit
       var tempF = response.main.temp;
@@ -44,27 +54,14 @@ $(document).ready(function () {
     });
   }
   
-  $("#submit").click(function () {
+  $("#submit").on("click", function (event) {
+    event.preventDefault();
     var city1 = $("#locationInput").val();
     getCurrentWeather(city1);
   });
 
   
 
-  function getUV(lat, long) {
-    $.ajax({
-      url:
-        "http://api.openweathermap.org/data/2.5/uvi?lat=" +
-        lat +
-        "&lon=" +
-        long +
-        "&appid=" +
-        apiKey,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-    });
-  }
   //pull data or create empty array
   var storage = JSON.parse(localStorage.getItem("storage")) || [];
 });
